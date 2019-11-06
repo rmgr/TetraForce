@@ -27,6 +27,12 @@ func start():
 func _on_timeout():
 	timer.stop()
 	$Hitbox/CollisionShape2D.disabled = false
+	var x = $Hitbox.
+	for i in x:
+		var parent = i.get_parent()
+		parent.unlock()
+		print_debug(i)
+		
 	print_debug("boom")
 	var timer2 = Timer.new()
 	timer2.connect("timeout", self, "delete")
