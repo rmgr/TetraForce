@@ -4,16 +4,18 @@ extends Item
 var shooter
 var timer
 var exploded
+var blasted_walls
 
 puppet var puppet_pos = position
 
 func start():
-	DAMAGE *= 4 #Set damage to 2 hearts.
 	TYPE = "TRAP"
+	DAMAGE = 0
+	blasted_walls = []
 	shooter = get_parent()
 	add_to_group("projectile")
 	z_index = shooter.z_index - 1
-	
+	exploded = false
 	get_parent().remove_child(self)
 	shooter.get_parent().add_child(self)
 	position = shooter.position
@@ -22,18 +24,28 @@ func start():
 	timer.set_wait_time( 2 )
 	add_child(timer)
 	timer.start()
-	set_physics_process(false)
+	set_physics_process(true)
+	
+	$Hitbox.connect("body_entered", self, "body_entered")
+		
+
+func _physics_process(delta: float) -> void:
+	pass
+	
+func body_entered(body):
+	if !exploded:
+		blasted_walls.push_back(body)
+	
 
 func _on_timeout():
 	timer.stop()
-	$Hitbox/CollisionShape2D.disabled = false
-	var x = $Hitbox.
-	for i in x:
-		var parent = i.get_parent()
-		parent.unlock()
-		print_debug(i)
-		
-	print_debug("boom")
+	exploded = true
+	DAMAGE = 2
+	for body in blasted_walls:
+		if body.has_method("blast"):
+			body.blast()
+	
+	print_debug("boom - play animation here")
 	var timer2 = Timer.new()
 	timer2.connect("timeout", self, "delete")
 	timer2.set_wait_time( 1 )
