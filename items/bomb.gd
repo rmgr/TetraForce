@@ -14,7 +14,7 @@ func start():
 	blasted_walls = []
 	shooter = get_parent()
 	add_to_group("projectile")
-	z_index = shooter.z_index - 1
+	z_index = shooter.z_index + 1
 	exploded = false
 	get_parent().remove_child(self)
 	shooter.get_parent().add_child(self)
@@ -44,11 +44,14 @@ func _on_timeout():
 	for body in blasted_walls:
 		if body.has_method("blast"):
 			body.blast()
-	
+	var death_animation = preload("res://enemies/enemy_death.tscn").instance()
+	death_animation.global_position = global_position
+	get_parent().add_child(death_animation)
+	$Sprite.visible = false
 	print_debug("boom - play animation here")
 	var timer2 = Timer.new()
 	timer2.connect("timeout", self, "delete")
-	timer2.set_wait_time( 1 )
+	timer2.set_wait_time( 0.25 )
 	add_child(timer2)
 	timer2.start()
 	
