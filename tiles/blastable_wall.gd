@@ -3,8 +3,7 @@ extends StaticBody2D
 
 
 export var is_blasted = false
-export var sprite = "res://tiles/cliff.png"
-export var patch_dir = "lr"
+export var patchdirection = ""
 var tiles_to_patch
 var all_set = false
 var parent 
@@ -27,15 +26,25 @@ func _physics_process(delta):
 			var wall_tilemap = parent.get_node("walls")
 			var tile_pos = wall_tilemap.world_to_map(position)
 			var this_tile = wall_tilemap.get_cellv(tile_pos)
-			if ("l" in patch_dir):
+			if ("l" in patchdirection):
 				var left_tile = Vector2(tile_pos.x - 1, tile_pos.y)
 				tiles_to_patch["left"] = wall_tilemap.get_cellv(left_tile)
 				wall_tilemap.set_cellv(left_tile, this_tile)
 				
-			if ("r" in patch_dir):
+			if ("r" in patchdirection):
 				var right_tile = Vector2(tile_pos.x + 1, tile_pos.y)
 				tiles_to_patch["right"] = wall_tilemap.get_cellv(right_tile)
 				wall_tilemap.set_cellv(right_tile, this_tile)
+			
+			if ("u" in patchdirection):
+				var up_tile = Vector2(tile_pos.x, tile_pos.y - 1)
+				tiles_to_patch["up"] = wall_tilemap.get_cellv(up_tile)
+				wall_tilemap.set_cellv(up_tile, this_tile)
+				
+			if ("d" in patchdirection):
+				var down_tile = Vector2(tile_pos.x, tile_pos.y + 1)
+				tiles_to_patch["down"] = wall_tilemap.get_cellv(down_tile)
+				wall_tilemap.set_cellv(down_tile, this_tile)
 			
 			all_set = true
 	
@@ -46,13 +55,21 @@ func blast():
 	var tile_pos = wall_tilemap.world_to_map(position)
 	wall_tilemap.set_cellv(tile_pos, -1)
 	
-	if ("l" in patch_dir):
+	if ("l" in patchdirection):
 		var left_tile = Vector2(tile_pos.x - 1, tile_pos.y)
 		wall_tilemap.set_cellv(left_tile, tiles_to_patch["left"] )
 		
-	if ("r" in patch_dir):
+	if ("r" in patchdirection):
 		var right_tile = Vector2(tile_pos.x + 1, tile_pos.y)
 		wall_tilemap.set_cellv(right_tile, tiles_to_patch["right"])
+	
+	if ("u" in patchdirection):
+		var up_tile = Vector2(tile_pos.x, tile_pos.y - 1)
+		wall_tilemap.set_cellv(up_tile, tiles_to_patch["up"] )
+		
+	if ("d" in patchdirection):
+		var down_tile = Vector2(tile_pos.x , tile_pos.y + 1)
+		wall_tilemap.set_cellv(down_tile, tiles_to_patch["down"])
 	
 	visible = false
 	set_collision_layer_bit(0,0)

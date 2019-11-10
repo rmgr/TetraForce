@@ -34,8 +34,8 @@
  </tile>
  <tile id="6">
   <properties>
+   <property name="patchdirection" value=""/>
    <property name="path" value="res://tiles/blastable_wall.tscn"/>
-   <property name="sprite_loc" value="res://tiles/sign.png"/>
   </properties>
   <image width="16" height="16" source="../tiles/cracked.png"/>
  </tile>
