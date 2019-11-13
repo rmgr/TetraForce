@@ -43,6 +43,16 @@ _global_script_classes=[ {
 "class": "entity_helper",
 "language": "GDScript",
 "path": "res://engine/helper_scipts/entity_helper.gd"
+}, {
+"base": "Enemy",
+"class": "slime_green",
+"language": "GDScript",
+"path": "res://enemies/slime_green.gd"
+}, {
+"base": "Enemy",
+"class": "slime_red",
+"language": "GDScript",
+"path": "res://enemies/slime_red.gd"
 } ]
 _global_script_class_icons={
 "Droppable": "",
@@ -51,7 +61,9 @@ _global_script_class_icons={
 "Item": "",
 "Room": "",
 "Switch": "",
-"entity_helper": ""
+"entity_helper": "",
+"slime_green": "",
+"slime_red": ""
 }
 
 [application]
