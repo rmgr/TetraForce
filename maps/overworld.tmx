@@ -479,7 +479,7 @@
     <property name="map" value="cave"/>
    </properties>
   </object>
-  <object id="39" gid="69" x="51.5195" y="91.901" width="16" height="16"/>
+  <object id="39" gid="69" x="127.174" y="94.4109" width="16" height="16"/>
  </objectgroup>
  <imagelayer id="7" name="grid">
   <image source="../tiled/gridtemplate.png" width="2048" height="1152"/>

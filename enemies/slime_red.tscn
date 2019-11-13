@@ -20,12 +20,14 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6, 6 )
+extents = Vector2( 7, 7 )
 
 [node name="slime_red" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource( 2 )
+MAX_HEALTH = 1.5
+SPEED = 50
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 4.0
@@ -34,9 +36,7 @@ anims/default = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 z_as_relative = false
 texture = ExtResource( 1 )
-frame = 1
 region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 2 )

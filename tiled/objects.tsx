@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="8" columns="0">
+<tileset version="1.2" tiledversion="1.2.5" name="objects" tilewidth="16" tileheight="16" tilecount="9" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="1">
   <properties>
@@ -52,6 +52,12 @@
   <properties>
    <property name="path" value="res://enemies/slime_red.tscn"/>
   </properties>
-  <image width="16" height="16" source="../enemies/slime_red.png"/>
+  <image width="16" height="16" source="images/objects/slime_red.png"/>
+ </tile>
+ <tile id="9">
+  <properties>
+   <property name="res://enemies/slime_green.tscn" value=""/>
+  </properties>
+  <image width="16" height="16" source="images/objects/slime_green.png"/>
  </tile>
 </tileset>
