@@ -10,8 +10,7 @@ func start() -> void:
 		if get_parent().has_method("state_swing"):
 			get_parent().state = "swing"
 
-	anim.play(str("swing", get_parent().spritedir))
-  
+	anim.play(str("swing", get_parent().spritedir)) 
 	sfx.play(load(str("res://items/sword_swing",int(rand_range(1,5)),".wav")), .75, false)
 
 func destroy(animation) -> void:

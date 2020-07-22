@@ -15,3 +15,16 @@ func check_for_death() -> void:
 	print("checking for death ", health)
 	if health == 0:
 		rpc("enemy_death")
+
+func get_closest_player():
+	var closest_player = null
+	for x in room.entities:
+		if (x != null):
+			if x.get("TYPE") == "PLAYER":
+				if closest_player == null:
+					closest_player = x
+				else:
+					if position.distance_to(x.position) < position.distance_to(closest_player.position):
+						closest_player = x
+		
+	return closest_player
