@@ -5,6 +5,7 @@ var cut_cells = [] setget enter_cut_cells
 func _ready():
 	var network_object = preload("res://engine/network_object.tscn").instance()
 	network_object.enter_properties = {"cut_cells":[]}
+	
 	add_child(network_object)
 
 func cut(hitbox):

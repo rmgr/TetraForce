@@ -52,3 +52,16 @@ func rand_direction():
 		4:
 			return Vector2.DOWN
 	return Vector2(0, 0)
+
+func get_closest_player():
+	var closest_player = null
+	for x in get_parent().get_children():
+		if (x != null):
+			if x.get("TYPE") == "PLAYER":
+				if closest_player == null:
+					closest_player = x
+				else:
+					if position.distance_to(x.position) < position.distance_to(closest_player.position):
+						closest_player = x
+		
+	return closest_player
